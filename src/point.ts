@@ -18,4 +18,8 @@ export class Point {
     IncrémenterLongitude() {
         return new Point(0, this.Longitude + 1); // TODO : latitude remise à zéro
     }
+
+    DécrémenterLongitude() {
+        return new Point(0, this.Longitude - 1); // TODO : latitude remise à zéro;
+    }
 }
