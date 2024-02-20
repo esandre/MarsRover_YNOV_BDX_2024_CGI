@@ -4,7 +4,7 @@ import {Point} from "../src/point";
 
 describe('Un Rover peut avancer', () => {
      test.each([1, 2])(
-         'ETANT DONNE un Rover ' +
+         'ETANT DONNE un Rover orienté Nord ' +
          'QUAND il avance %s fois ' +
          'ALORS sa latitude augmente d\'autant', (n:number) => {
          const roverInitial = new Rover();
@@ -17,8 +17,22 @@ describe('Un Rover peut avancer', () => {
              .toEqual(roverInitial.Position.Latitude + n);
      });
 
+    test.each([1, 2])(
+        'ETANT DONNE un Rover orienté Est ' +
+        'QUAND il avance %s fois ' +
+        'ALORS sa longitude augmente d\'autant', (n:number) => {
+            const roverInitial = new Rover(new Point(), Orientation.Est);
+
+            let roverFinal = roverInitial;
+            for (let i = 0; i < n; i++)
+                roverFinal = roverFinal.Avancer();
+
+            expect(roverFinal.Position.Longitude)
+                .toEqual(roverInitial.Position.Longitude + n);
+        });
+
      test.each([1, 2])(
-         'ETANT DONNE un Rover ' +
+         'ETANT DONNE un Rover orienté Nord' +
          'QUAND il recule %s fois ' +
          'ALORS sa latitude diminue d\'autant', (n:number) => {
              const roverInitial = new Rover();
