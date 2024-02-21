@@ -22,4 +22,17 @@ export class Point {
     DécrémenterLongitude() {
         return new Point(0, this.Longitude - 1); // TODO : latitude remise à zéro;
     }
+
+    Modulo(_taille: number) {
+        return new Point(
+            this.modulo(this.Latitude, _taille),
+            this.modulo(this.Longitude, _taille)
+        );
+    }
+
+    private modulo(num: number, mod: number){
+        const valeurRéduiteSignée = (num % mod) % -mod;
+        const valeurNonSignée = valeurRéduiteSignée + mod;
+        return valeurNonSignée % mod;
+    }
 }

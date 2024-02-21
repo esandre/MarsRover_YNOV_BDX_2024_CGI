@@ -8,6 +8,6 @@ export class PlanèteToroïdale implements PlanèteInterface {
     }
 
     public Normaliser(point: Point): Point{
-        return new Point();
+        return point.Modulo(this._taille);
     }
 }

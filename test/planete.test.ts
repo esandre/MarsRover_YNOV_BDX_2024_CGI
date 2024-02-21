@@ -1,6 +1,3 @@
-import {Rover} from "../src/rover";
-import {Point} from "../src/point";
-import {Orientation} from "../src/orientation";
 import {PlanèteToroïdale} from "../src/planèteToroïdale";
 import {RoverBuilder} from "./utilities/roverBuilder";
 
@@ -17,4 +14,17 @@ describe("Géométrie toroïdale", () => {
 
        expect(roverTesté.Position).toEqual(roverTémoin.Position);
    })
+
+    test("ETANT DONNE un Rover sur une planète toroïdale de taille 2 " +
+        "QUAND il avance 1 fois" +
+        "ALORS ses coordonnées ne sont pas les mêmes qu'un rover n'ayant pas bougé", () => {
+        const planète = new PlanèteToroïdale(2);
+
+        let roverTémoin = new RoverBuilder().WithPlanète(planète).Build();
+        let roverTesté = new RoverBuilder().WithPlanète(planète).Build();
+
+        roverTesté = roverTesté.Avancer();
+
+        expect(roverTesté.Position).not.toEqual(roverTémoin.Position);
+    })
 });
