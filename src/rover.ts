@@ -1,16 +1,17 @@
 import {Point} from "./point";
 import {Orientation} from "./orientation";
 import {PlanèteToroïdale} from "./planèteToroïdale";
+import {PlanèteInfinie} from "../test/utilities/planèteInfinie";
 
 export class Rover {
     public readonly Position : Point;
     public readonly Orientation : Orientation;
-    private readonly _planète: PlanèteToroïdale;
+    private readonly _planète: PlanèteInfinie;
 
-    public constructor(position: Point = new Point(),
-                       orientation: Orientation = Orientation.Nord,
-                       planète: PlanèteToroïdale){
-        this.Position = position;
+    public constructor(position: Point,
+                       orientation: Orientation,
+                       planète: PlanèteInfinie){
+        this.Position = planète.Normaliser(position);
         this.Orientation = orientation;
         this._planète = planète;
     }
