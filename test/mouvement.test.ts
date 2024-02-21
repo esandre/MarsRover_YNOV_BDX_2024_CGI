@@ -75,6 +75,19 @@ describe('Un Rover peut avancer', () => {
              expect(roverTesté.Position).toEqual(roverTémoin.Position);
          });
 
+         test("ETANT DONNE un Rover orienté Ouest " +
+             "QUAND il avance " +
+             "ALORS il est à la même position qu'un Rover orienté Est qui recule", () =>
+         {
+             let roverTesté = new Rover(new Point(), Orientation.Ouest);
+             let roverTémoin = new Rover(new Point(), Orientation.Est);
+
+             roverTesté = roverTesté.Avancer();
+             roverTémoin = roverTémoin.Reculer();
+
+             expect(roverTesté.Position).toEqual(roverTémoin.Position);
+         });
+
          test("ETANT DONNE un Rover orienté Sud " +
              "QUAND il recule " +
              "ALORS il est à la même position qu'un Rover orienté Nord qui avance", () =>

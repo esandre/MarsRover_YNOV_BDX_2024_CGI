@@ -29,7 +29,8 @@ export class Orientation {
             return Orientation.Sud;
         if(this == Orientation.Ouest)
             return Orientation.Est;
+        if(this == Orientation.Est)
+            return Orientation.Ouest;
         return Orientation.Nord;
-        // TODO : Cas Ouest
     }
 }
