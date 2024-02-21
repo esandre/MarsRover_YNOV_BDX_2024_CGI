@@ -1,10 +1,11 @@
 import {Rover} from "../src/rover";
 import {RoverInterpreter} from "../src/roverInterpreter";
+import {RoverBuilder} from "./utilities/roverBuilder";
 
 describe("Commandes simples", ()=> {
     test("La commande A fait avancer le Rover", () => {
-        let roverCommandé = new Rover();
-        let roverTémoin = new Rover();
+        let roverCommandé = RoverBuilder.Default();
+        let roverTémoin = RoverBuilder.Default();
 
         const interpreter = new RoverInterpreter(roverCommandé);
         roverCommandé = interpreter.Interpréter("A");
@@ -15,8 +16,8 @@ describe("Commandes simples", ()=> {
     })
 
     test("La commande R fait reculer le Rover", () => {
-        let roverCommandé = new Rover();
-        let roverTémoin = new Rover();
+        let roverCommandé = RoverBuilder.Default();
+        let roverTémoin = RoverBuilder.Default();
 
         const interpreter = new RoverInterpreter(roverCommandé);
         roverCommandé = interpreter.Interpréter("R");
@@ -27,8 +28,8 @@ describe("Commandes simples", ()=> {
     });
 
     test("La commande RR fait reculer le Rover 2 fois", () => {
-        let roverCommandé = new Rover();
-        let roverTémoin = new Rover();
+        let roverCommandé = RoverBuilder.Default();
+        let roverTémoin = RoverBuilder.Default();
 
         const interpreter = new RoverInterpreter(roverCommandé);
         roverCommandé = interpreter.Interpréter("RR");
