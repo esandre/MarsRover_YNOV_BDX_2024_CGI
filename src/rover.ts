@@ -1,24 +1,27 @@
 import {Point} from "./point";
 import {Orientation} from "./orientation";
-import {PlanèteToroïdale} from "./planèteToroïdale";
-import {PlanèteInfinie} from "../test/utilities/planèteInfinie";
+import {PlanèteInterface} from "./planète.interface";
 
 export class Rover {
     public readonly Position : Point;
     public readonly Orientation : Orientation;
-    private readonly _planète: PlanèteInfinie;
+    private readonly _planète: PlanèteInterface;
 
     public constructor(position: Point,
                        orientation: Orientation,
-                       planète: PlanèteInfinie){
+                       planète: PlanèteInterface){
         this.Position = planète.Normaliser(position);
         this.Orientation = orientation;
         this._planète = planète;
     }
 
     public Avancer(): Rover {
-        let nouvellePosition = this.Orientation.Déplacer(this.Position)
-        return new Rover(nouvellePosition, this.Orientation, this._planète);
+        let nouvellePosition = this.Orientation.Déplacer(this.Position);
+        const voieLibre = this._planète.EstLibre(nouvellePosition);
+
+        if(voieLibre)
+            return new Rover(nouvellePosition, this.Orientation, this._planète);
+        else return this;
     }
 
     public Reculer(): Rover{

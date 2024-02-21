@@ -7,6 +7,10 @@ export class PlanèteToroïdale implements PlanèteInterface {
         this._taille = taille;
     }
 
+    EstLibre(position: Point): boolean {
+        return true;
+    }
+
     public Normaliser(point: Point): Point{
         return point.Modulo(this._taille);
     }

@@ -11,6 +11,7 @@ export class RoverBuilder {
 
     private _orientation: Orientation = Orientation.Nord;
     private _planète: PlanèteInterface = new PlanèteInfinie();
+    private _startingPosition: Point = new Point();
 
     public WithOrientation(orientation: Orientation): RoverBuilder {
         this._orientation = orientation;
@@ -23,6 +24,11 @@ export class RoverBuilder {
     }
 
     public Build() : Rover{
-        return new Rover(new Point(), this._orientation, this._planète);
+        return new Rover(this._startingPosition, this._orientation, this._planète);
+    }
+
+    WithStartingPosition(positionRover: Point) {
+        this._startingPosition = positionRover;
+        return this;
     }
 }
