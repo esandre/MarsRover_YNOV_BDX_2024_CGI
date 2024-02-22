@@ -7,18 +7,21 @@ import {Rover} from "../src/rover";
 import {PlanèteAvecObstacle} from "../src/planèteAvecObstacle";
 
 describe("Géométrie toroïdale", () => {
-   test("ETANT DONNE un Rover sur une planète toroïdale de taille 1 " +
-       "QUAND il avance " +
-        "ALORS ses coordonnées sont les mêmes qu'un rover n'ayant pas bougé", () => {
-       const planète = new PlanèteToroïdale(1);
+   test.each([1, 2, 1000])(
+       "ETANT DONNE un Rover sur une planète toroïdale de taille n = %s " +
+        "QUAND il avance n fois " +
+        "ALORS ses coordonnées sont les mêmes qu'un rover n'ayant pas bougé",
+       (taille: number) => {
+           const planète = new PlanèteToroïdale(taille);
 
-       let roverTémoin = new RoverBuilder().WithPlanète(planète).Build();
-       let roverTesté = new RoverBuilder().WithPlanète(planète).Build();
+           let roverTémoin = new RoverBuilder().WithPlanète(planète).Build();
+           let roverTesté = new RoverBuilder().WithPlanète(planète).Build();
 
-       roverTesté = roverTesté.Avancer();
+           for (let n = 0; n < taille; n++)
+            roverTesté = roverTesté.Avancer();
 
-       expect(roverTesté.Position).toEqual(roverTémoin.Position);
-   })
+           expect(roverTesté.Position).toEqual(roverTémoin.Position);
+       })
 
     test("ETANT DONNE un Rover sur une planète toroïdale de taille 2 " +
         "QUAND il avance 1 fois" +

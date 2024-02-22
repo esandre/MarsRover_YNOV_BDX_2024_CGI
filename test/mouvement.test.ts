@@ -48,78 +48,31 @@ describe('Un Rover peut avancer', () => {
  });
 
  describe('Un rover va dans la direction de son orientation', () => {
-     describe('Un Rover orienté Sud fait l\'inverse d\'un rover orienté Nord', () =>
+     describe('Un Rover orienté dans une direction fait l\'inverse d\'un rover orienté à l\'opposé', () =>
      {
-         test("ETANT DONNE un Rover orienté Sud " +
+         test.each([
+             [Orientation.Nord, Orientation.Sud],
+             [Orientation.Sud, Orientation.Nord],
+             [Orientation.Est, Orientation.Ouest],
+             [Orientation.Ouest, Orientation.Est]
+         ])(
+             "ETANT DONNE un Rover orienté %s " +
              "QUAND il avance " +
-             "ALORS il est à la même position qu'un Rover orienté Nord qui recule", () =>
-         {
-             let roverTesté = new RoverBuilder()
-                 .WithOrientation(Orientation.Sud)
-                 .Build();
+             "ALORS il est à la même position qu'un Rover orienté %s qui recule",
+             (origine:Orientation, attendue:Orientation) =>
+             {
+                 let roverTesté = new RoverBuilder()
+                     .WithOrientation(origine)
+                     .Build();
 
-             let roverTémoin = new RoverBuilder()
-                 .WithOrientation(Orientation.Nord)
-                 .Build();
+                 let roverTémoin = new RoverBuilder()
+                     .WithOrientation(attendue)
+                     .Build();
 
-             roverTesté = roverTesté.Avancer();
-             roverTémoin = roverTémoin.Reculer();
+                 roverTesté = roverTesté.Avancer();
+                 roverTémoin = roverTémoin.Reculer();
 
-             expect(roverTesté.Position).toEqual(roverTémoin.Position);
-         });
-
-         test("ETANT DONNE un Rover orienté Est " +
-             "QUAND il avance " +
-             "ALORS il est à la même position qu'un Rover orienté Ouest qui recule", () =>
-         {
-             let roverTesté = new RoverBuilder()
-                 .WithOrientation(Orientation.Est)
-                 .Build();
-
-             let roverTémoin = new RoverBuilder()
-                 .WithOrientation(Orientation.Ouest)
-                 .Build();
-
-             roverTesté = roverTesté.Avancer();
-             roverTémoin = roverTémoin.Reculer();
-
-             expect(roverTesté.Position).toEqual(roverTémoin.Position);
-         });
-
-         test("ETANT DONNE un Rover orienté Ouest " +
-             "QUAND il avance " +
-             "ALORS il est à la même position qu'un Rover orienté Est qui recule", () =>
-         {
-             let roverTesté = new RoverBuilder()
-                 .WithOrientation(Orientation.Ouest)
-                 .Build();
-
-             let roverTémoin = new RoverBuilder()
-                 .WithOrientation(Orientation.Est)
-                 .Build();
-
-             roverTesté = roverTesté.Avancer();
-             roverTémoin = roverTémoin.Reculer();
-
-             expect(roverTesté.Position).toEqual(roverTémoin.Position);
-         });
-
-         test("ETANT DONNE un Rover orienté Sud " +
-             "QUAND il recule " +
-             "ALORS il est à la même position qu'un Rover orienté Nord qui avance", () =>
-         {
-             let roverTesté = new RoverBuilder()
-                 .WithOrientation(Orientation.Sud)
-                 .Build();
-
-             let roverTémoin = new RoverBuilder()
-                 .WithOrientation(Orientation.Nord)
-                 .Build();
-
-             roverTesté = roverTesté.Reculer();
-             roverTémoin = roverTémoin.Avancer();
-
-             expect(roverTesté.Position).toEqual(roverTémoin.Position);
-         });
+                 expect(roverTesté.Position).toEqual(roverTémoin.Position);
+             });
      });
  });
