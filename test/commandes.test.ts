@@ -7,8 +7,7 @@ describe("Commandes simples", ()=> {
         let roverCommandé = RoverBuilder.Default();
         let roverTémoin = RoverBuilder.Default();
 
-        const interpreter = new RoverInterpreter(roverCommandé);
-        roverCommandé = interpreter.Interpréter("A");
+        roverCommandé = RoverInterpreter.Interpréter("A", roverCommandé);
 
         roverTémoin = roverTémoin.Avancer();
 
@@ -19,23 +18,24 @@ describe("Commandes simples", ()=> {
         let roverCommandé = RoverBuilder.Default();
         let roverTémoin = RoverBuilder.Default();
 
-        const interpreter = new RoverInterpreter(roverCommandé);
-        roverCommandé = interpreter.Interpréter("R");
+        roverCommandé = RoverInterpreter.Interpréter("R", roverCommandé);
 
         roverTémoin = roverTémoin.Reculer();
 
         expect(roverCommandé.Position).toEqual(roverTémoin.Position)
     });
 
-    test("La commande RR fait reculer le Rover 2 fois", () => {
-        let roverCommandé = RoverBuilder.Default();
-        let roverTémoin = RoverBuilder.Default();
+    test.each(["RR", "AA", "AR", "RA"])(
+        "La commande %s produit le même effet que les commandes simples successivement.",
+        (commandeComplexe: string) => {
+            let roverTesté = RoverBuilder.Default();
+            let roverTémoin = RoverBuilder.Default();
 
-        const interpreter = new RoverInterpreter(roverCommandé);
-        roverCommandé = interpreter.Interpréter("RR");
+            roverTesté = RoverInterpreter.Interpréter(commandeComplexe, roverTesté);
 
-        roverTémoin = roverTémoin.Reculer().Reculer();
+            for (let commandeSimple of commandeComplexe)
+                roverTémoin = RoverInterpreter.Interpréter(commandeSimple, roverTémoin);
 
-        expect(roverCommandé.Position).toEqual(roverTémoin.Position)
+            expect(roverTesté.Position).toEqual(roverTémoin.Position)
     });
 })
