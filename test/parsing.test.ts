@@ -18,8 +18,25 @@ describe('Rover Parser', () => {
             orientationAttendue,
             planèteCommune);
 
-        const roverTesté = RoverInterpreter.Factory(str, planèteCommune);
+        const roverTesté = RoverInterpreter.Deserialize(str, planèteCommune);
 
         expect(roverTesté).toEqual(roverTémoin);
     })
+
+    test.each([
+        [0, 0, Orientation.Nord, "0,0,N"],
+        [0, 0, Orientation.Sud, "0,0,S"],
+        [1, 0, Orientation.Nord, "1,0,N"],
+    ])
+    ("A un Rover de latitude %s, de longitude %s et orienté %s, correspond une string %s",
+        (latitude, longitude, orientation, strAttendu) => {
+            const planèteCommune = new PlanèteInfinie();
+            const rover = new Rover(
+                new Point(latitude, longitude),
+                orientation,
+                planèteCommune);
+
+            const representation = RoverInterpreter.Serialize(rover);
+            expect(representation).toEqual(strAttendu);
+        })
 });

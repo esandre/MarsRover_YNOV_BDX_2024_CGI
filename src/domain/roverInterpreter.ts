@@ -15,10 +15,16 @@ export class RoverInterpreter {
         return rover;
     }
 
-    public static Factory(str: string, planète: PlanèteInterface): Rover {
+    public static Deserialize(str: string, planète: PlanèteInterface): Rover {
         const orientation = str.endsWith('S') ? Orientation.Sud : Orientation.Nord;
         const latitude = str.startsWith('1') ? 1 : 0;
 
         return new Rover(new Point(latitude, 0), orientation, planète);
+    }
+
+    public static Serialize(rover: Rover): string {
+        return rover.Position.Latitude + ','
+            + rover.Position.Longitude + ','
+            + rover.Orientation.toString().substring(0, 1)
     }
 }
