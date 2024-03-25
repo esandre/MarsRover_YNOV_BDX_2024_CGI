@@ -1,4 +1,4 @@
-import {Orientation} from "../src/orientation";
+import {Orientation} from "../src/domain/orientation";
 import {RoverBuilder} from "./utilities/roverBuilder";
 
 describe('Un Rover peut avancer', () => {

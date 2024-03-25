@@ -1,5 +1,5 @@
-import {Rover} from "../src/rover";
-import {RoverInterpreter} from "../src/roverInterpreter";
+import {Rover} from "../src/domain/rover";
+import {RoverInterpreter} from "../src/domain/roverInterpreter";
 import {RoverBuilder} from "./utilities/roverBuilder";
 
 describe("Commandes simples", ()=> {

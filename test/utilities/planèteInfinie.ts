@@ -1,5 +1,5 @@
-import {PlanèteInterface} from "../../src/planète.interface";
-import { Point } from "../../src/point";
+import {PlanèteInterface} from "../../src/domain/planète.interface";
+import { Point } from "../../src/domain/point";
 
 export class PlanèteInfinie implements PlanèteInterface {
     EstLibre(position: Point): boolean {

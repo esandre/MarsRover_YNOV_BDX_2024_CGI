@@ -1,8 +1,8 @@
-import {Rover} from "../../src/rover";
-import {Orientation} from "../../src/orientation";
-import {Point} from "../../src/point";
+import {Rover} from "../../src/domain/rover";
+import {Orientation} from "../../src/domain/orientation";
+import {Point} from "../../src/domain/point";
 import {PlanèteInfinie} from "./planèteInfinie";
-import {PlanèteInterface} from "../../src/planète.interface";
+import {PlanèteInterface} from "../../src/domain/planète.interface";
 
 export class RoverBuilder {
     public static Default(): Rover {

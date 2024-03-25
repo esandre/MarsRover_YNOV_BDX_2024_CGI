@@ -1,5 +1,5 @@
 export class Point {
-    readonly Latitude: number = 0;
+    readonly Latitude: number = 0.5;
     readonly Longitude: number = 0;
 
     public constructor(latitude: number = 0, longitude: number = 0) {

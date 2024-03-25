@@ -1,10 +1,10 @@
-import {PlanèteToroïdale} from "../src/planèteToroïdale";
+import {PlanèteToroïdale} from "../src/domain/planèteToroïdale";
 import {RoverBuilder} from "./utilities/roverBuilder";
 import {PlanèteInfinie} from "./utilities/planèteInfinie";
-import {Point} from "../src/point";
-import {Orientation} from "../src/orientation";
-import {Rover} from "../src/rover";
-import {PlanèteAvecObstacle} from "../src/planèteAvecObstacle";
+import {Point} from "../src/domain/point";
+import {Orientation} from "../src/domain/orientation";
+import {Rover} from "../src/domain/rover";
+import {PlanèteAvecObstacle} from "../src/domain/planèteAvecObstacle";
 
 describe("Géométrie toroïdale", () => {
    test.each([1, 2, 1000])(
