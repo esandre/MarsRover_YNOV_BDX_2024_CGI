@@ -1,8 +1,9 @@
 import {Point} from "./point";
 import {Orientation} from "./orientation";
 import {PlanèteInterface} from "./planète.interface";
+import {RoverInterface} from "./rover.interface";
 
-export class Rover {
+export class Rover implements RoverInterface {
     public readonly Position : Point;
     public readonly Orientation : Orientation;
     private readonly _planète: PlanèteInterface;
